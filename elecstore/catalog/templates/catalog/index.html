@@ -1,0 +1,9 @@
+{% if directory_list %}
+    <ul>
+    {% for directory in directory_list %}
+        <li><a href="/catalog/{{ directory.id }}/">{{ directory.directory_name }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>There are no Directories available.</p>
+{% endif %}

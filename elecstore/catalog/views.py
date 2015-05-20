@@ -1,10 +1,13 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.template import RequestContext, loader
+
+from .models import ProductDirectory
 
 
 # Create your views here.
 
-def homePage(request):
+def homePage(request):					#old index function
 	return HttpResponse("This will be my home page, with about us and that crap that can come in later")
 	
 def AbourUsPage(request):
@@ -14,7 +17,13 @@ def ContactUsPage(request):
 	return HttpResponse("This will be the official contact us page")
 
 def catalogView(request):
-    return HttpResponse("In this page, the different catalogs will be listed")
+	directory_list = ProductDirectory.objects.all()
+	template = loader.get_template('catalog/index.html')
+	context = RequestContext(request, {
+		'directory_list': directory_list,
+	})
+	return HttpResponse(template.render(context))
+    #return HttpResponse("In this page, the different catalogs will be listed")
     
 def catalogViewItem(request, directory_id):
     return HttpResponse("Im not firm on the details yet, but this displays catalog directory%s." % directory_id)
