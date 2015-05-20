@@ -1,0 +1,72 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>Product Description</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link rel="stylesheet" type="text/css" href="{% static 'catalog/style.css' %}" media="screen" />
+</head>
+<body>
+<div id="wrap">
+	<div id="header">
+		<div id="headerlinks">
+		<a href="{% url 'catalog.views.homePage' %}" title="Home">Home</a>
+		<a href="{% url 'catalog.views.AboutUsPage' %}" title="About Us">About Us</a>
+		<a href="{% url 'catalog.views.ContactUsPage' %}" title="Contact Us">Contact Us</a>
+		<a href="{% url 'catalog.views.catalogView' %}" title="View our Products">View our Products</a>
+		</div>
+		{% if description_list %}
+			{% for description in description_list %}
+				<h1>{{ description.product_name }}</h1>
+			{% endfor %}
+		{% else %}
+			<h1>There appears to be an error<h1>
+		{% endif %}
+	</div>
+
+	<div id="sidebar">
+		<h2>Links</h2>
+		<div class="box">
+		<ul>
+		<li><a href="{% url 'catalog.views.homePage' %}">Home</a></li>
+		<li><a href="{% url 'catalog.views.AboutUsPage' %}">About Us</a></li>
+		<li><a href="{% url 'catalog.views.ContactUsPage' %}">Contact Us</a></li>
+		<li><a href="{% url 'catalog.views.catalogView' %}">View our Products</a></li>
+		</ul>
+		</div>
+
+		
+	</div>
+
+	<div id="content">
+		{% if description_list %}
+			{% for description in description_list %}
+			<h2>About this product:</h2>
+			<h4>{{ description.product_directory }}</h4>
+			<h4>R&nbsp;{{ description.product_price }}</h4>
+			<div id="content">
+				<p>{{ description.product_description }}</p>
+			</div>
+			{% endfor %}
+		{% else %}
+			<p>This product has no information.</p>
+		{% endif %}
+	</div>
+
+	<div id="footer">
+		<div style="float: right;">
+		</div>
+	</div>
+</div>
+</body>
+</html>
+
+	
+	
+	
+		
+	
+	
+
+    
+

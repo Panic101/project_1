@@ -1,9 +1,0 @@
-{% if product_list %}
-    <ul>
-    {% for product in product_list %}
-        <li><a href="/catalog/products/{{ product.id }}/">{{ product.product_name }}</a></li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>There are no Products available.</p>
-{% endif %}

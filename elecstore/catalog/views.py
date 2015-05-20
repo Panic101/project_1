@@ -7,16 +7,16 @@ from .models import ProductDirectory, ProductItem
 
 # Create your views here.
 
-def homePage(request):					#old index function
-	return HttpResponse("This will be my home page, with about us and that crap that can come in later")
+def homePage(request):					#home page(old index function)
+	return render(request, 'catalog/home_page.html')
 	
-def AbourUsPage(request):
-	return HttpResponse("This will be the official about us page")
+def AboutUsPage(request):				#about us page
+	return render(request, 'catalog/about_us.html')
 	
-def ContactUsPage(request):
-	return HttpResponse("This will be the official contact us page")
+def ContactUsPage(request):				#contact us page
+	return render(request, 'catalog/contact_us.html')
 
-def catalogView(request):			#displays catalog of electronic items
+def catalogView(request):				#displays catalog of electronic items
 	directory_list = ProductDirectory.objects.all()
 	template = loader.get_template('catalog/catalog_view.html')
 	context = RequestContext(request, {
@@ -45,6 +45,5 @@ def productViewItem(request, product_id):	#displays the details of the product s
 	})
 	return HttpResponse(template.render(context))
 	
-    #return HttpResponse("Again, not so sure how yet, but this will display product%s" % product_id)
 
 

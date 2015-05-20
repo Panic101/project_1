@@ -8,7 +8,7 @@ urlpatterns = [
 	url(r'^$', views.homePage, name='homePage'),
 	
 	#ABOUT US
-	url(r'^about/$', views.AbourUsPage, name='AbourUsPage'),
+	url(r'^about/$', views.AboutUsPage, name='AbourUsPage'),
 	
 	#CONTACT US
 	url(r'^contact/$', views.ContactUsPage, name='ContactUsPage'),

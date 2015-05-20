@@ -1,0 +1,54 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>Product Categories</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link rel="stylesheet" type="text/css" href="{% static 'catalog/style.css' %}" media="screen" />
+</head>
+<body>
+<div id="wrap">
+	<div id="header">
+		<div id="headerlinks">
+		<a href="{% url 'catalog.views.homePage' %}" title="Home">Home</a>
+		<a href="{% url 'catalog.views.AboutUsPage' %}" title="About Us">About Us</a>
+		<a href="{% url 'catalog.views.ContactUsPage' %}" title="Contact Us">Contact Us</a>
+		<a href="{% url 'catalog.views.catalogView' %}" title="View our Products">View our Products</a>
+		</div>
+		<h1>Select a Category</h1>
+	</div>
+
+	<div id="sidebar">
+		<h2>Links</h2>
+		<div class="box">
+		<ul>
+		<li><a href="{% url 'catalog.views.homePage' %}">Home</a></li>
+		<li><a href="{% url 'catalog.views.AboutUsPage' %}">About Us</a></li>
+		<li><a href="{% url 'catalog.views.ContactUsPage' %}">Contact Us</a></li>
+		<li><a href="{% url 'catalog.views.catalogView' %}">View our Products</a></li>
+		</ul>
+		</div>
+
+		
+	</div>
+
+	<div id="content">
+		<h2>Product Categories:</h2>
+		{% if directory_list %}
+			<ul>
+			{% for directory in directory_list %}
+				<li><a href="/catalog/{{ directory.id }}/">{{ directory.directory_name }}</a></li>
+			{% endfor %}
+			</ul>
+		{% else %}
+			<p>There are no Directories available.</p>
+		{% endif %}
+		</div>
+
+	<div id="footer">
+		<div style="float: right;">
+		</div>
+	</div>
+</div>
+</body>
+</html>
